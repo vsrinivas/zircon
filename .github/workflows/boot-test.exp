@@ -1,0 +1,17 @@
+#!/usr/bin/expect -f
+
+set timeout -1
+
+spawn ./scripts/run-zircon-x64 -k -- -no-reboot
+
+expect "$ "
+send "k cpu features\n"
+
+expect "$ "
+send "k ut\n"
+
+expect "$ "
+send "runtests -all\n"
+
+expect "$ "
+send "k reboot\n"
